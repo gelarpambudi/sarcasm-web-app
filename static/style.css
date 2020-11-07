@@ -1,0 +1,89 @@
+body {
+  font-family: Arial;
+}
+* {
+  box-sizing: border-box;
+}
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  text-align: center;
+}
+form.example button:hover {
+  background: #0b7dda;
+}
+form.example button:active {
+  background: #f5350c;
+}
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table.entry {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+table.entry td, table.entry th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+table.entry tr:nth-child(even){background-color: #f2f2f2;}
+  
+table.entry tr:hover {background-color: #ddd;}
+  
+table.entry th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(71, 152, 206);
+    color: white;
+ }
+
+ .button1 {
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  text-align: center;
+
+
+  /*
+  display:block;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  */
+  margin:0 auto;
+  display:block;
+
+}
+
+.button1:hover {background-color: #0b7dda}
+
+.button1:active {
+  background-color: #f5350c ;
+}
+  

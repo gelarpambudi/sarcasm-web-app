@@ -24,13 +24,18 @@
             {% endwith %}
         </p>
 
-        <form method='post'>
+        <form class="example" method="post" action="" style="margin:auto;max-width:600px">
             <input type="text" placeholder="Input your answer here" name="input-text">
-            <button type="submit">Submit<i class="fa fa-search"></i></button>
-            <input type="radio" name="model" id="model1" value="CNN"> CNN </input><br>
-            <input type="radio" name="model" id="model2" value="LSTM"> LSTM </input><br>
-            <input type="radio" name="model" id="model3" value="GRU"> GRU </input><br>
+            <button type="submit">Submit<i class="fa fa-search"></i></button><br>
+            <center>
+                <input type="radio" name="model" id="model1" value="CNN"> CNN </input>
+                <input type="radio" name="model" id="model2" value="LSTM"> LSTM </input>
+                <input type="radio" name="model" id="model3" value="GRU"> GRU </input>
+            </center>
         </form>
+
+        <p> <center> {{ text }} </center></p>
+
 
     </body>
 </html>

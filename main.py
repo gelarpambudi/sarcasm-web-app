@@ -1,17 +1,18 @@
-from flask import request, render_template, flash
+from flask import request, render_template, flash, session
 import pickle
 from app import app
 
 
 def predict(txt, model_type):
     #TODO create prediction function
-    return [txt, model_type]
+    res = txt + ' is a ' + model_type
+    return res
 
 
 @app.route('/', methods=['GET', 'POST'])
 def introLevel():
-    if request.method == 'POST' :
 
+    if request.method == 'POST' :
         input_text = request.form.get("input-text")
         model = request.form.get("model")
 
@@ -22,8 +23,8 @@ def introLevel():
                 pred_result = predict(input_text, model)
             elif (model == 'GRU'):
                 pred_result = predict(input_text, model)    
-            return render_template('home.html', text=pred_result[0], result=pred_result[1])
-        except ValueError:
+            return render_template('home.html', text=pred_result)
+        except UnboundLocalError:
              flash(u'Input text tidak boleh kosong')
              return render_template('home.html')
 
