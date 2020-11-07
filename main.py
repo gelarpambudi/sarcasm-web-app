@@ -1,6 +1,11 @@
 from flask import request, render_template, flash
 import pickle
+from app import app
 
+
+def predict(txt, model_type):
+    #TODO create prediction function
+    return [txt, model_type]
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -23,6 +28,6 @@ def introLevel():
         return render_template('home.html')
 
 
-def predict(txt, model_type):
-    #TODO create prediction function
-    return [txt, model_type]
+
+if __name__ == "__main__":
+    app.run(debug = True, host='0.0.0.0', port='7777')
