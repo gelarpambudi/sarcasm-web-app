@@ -24,5 +24,13 @@
             {% endwith %}
         </p>
 
+        <form method='post'>
+            <input type="text" placeholder="Input your answer here" name="input-text">
+            <button type="submit">Submit<i class="fa fa-search"></i></button>
+            <input type="radio" name="model" id="model1" value="CNN"> CNN </input><br>
+            <input type="radio" name="model" id="model2" value="LSTM"> LSTM </input><br>
+            <input type="radio" name="model" id="model3" value="GRU"> GRU </input><br>
+        </form>
+
     </body>
 </html>
