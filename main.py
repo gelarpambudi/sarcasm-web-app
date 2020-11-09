@@ -1,6 +1,52 @@
 from flask import request, render_template, flash, session
 import pickle
 from app import app
+import numpy as np
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import load_model
+
+
+tokenizer=pickle.load(open('tranform.pkl','rb'))
+
+LSTM = load_model('LSTM_model.h5')
+GRU = load_model('GRU_model.h5')
+CNN = load_model('CNN_model.h5')
+
+def LSTMmodel(sentence):
+    word_tokenize = tokenizer.texts_to_sequences([sentence])
+    input = pad_sequences(word_tokenize, maxlen=20, padding='post', truncating='post')
+    input = np.array(input)
+    value = LSTM.predict(input)[0][0]*100
+    statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
+    if value>50:
+        result = 'LSTM: Termasuk kalimat sarkas, '+ statement
+    else:
+        result = 'LSTM: Bukan kalimat sarkas, ' + statement
+    return result
+        
+def GRUmodel(sentence):
+    word_tokenize = tokenizer.texts_to_sequences([sentence])
+    input = pad_sequences(word_tokenize, maxlen=20, padding='post', truncating='post')
+    input = np.array(input)
+    value = GRU.predict(input)[0][0]*100
+    statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
+    if value>50:
+        result = 'GRU: Termasuk kalimat sarkas, '+ statement
+    else:
+        result = 'GRU: Bukan kalimat sarkas, ' + statement
+    return result
+        
+def CNNmodel(sentence):
+    word_tokenize = tokenizer.texts_to_sequences([sentence])
+    input = pad_sequences(word_tokenize, maxlen=20, padding='post', truncating='post')
+    input = np.array(input)
+    value = CNN.predict(input)[0][0]*100
+    statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
+    if value>50:
+        result = 'CNN: Termasuk kalimat sarkas, ' + statement
+    else:
+        result = 'CNN: Bukan kalimat sarkas, ' + statement
+    return result
 
 
 def predict(txt, model_type):
@@ -18,11 +64,11 @@ def introLevel():
 
         try:
             if (model == 'CNN'):
-                pred_result = predict(input_text, model)
+                pred_result = CNNmodel(input_text)
             elif (model == 'LSTM'):
-                pred_result = predict(input_text, model)
+                pred_result = LSTMmodel(input_text)
             elif (model == 'GRU'):
-                pred_result = predict(input_text, model)    
+                pred_result = GRUmodel(input_text)    
             return render_template('home.html', text=pred_result)
         except UnboundLocalError:
              flash(u'Input text tidak boleh kosong')
