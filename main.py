@@ -49,11 +49,6 @@ def CNNmodel(sentence):
     return result
 
 
-def predict(txt, model_type):
-    #TODO create prediction function
-    res = txt + ' is a ' + model_type
-    return res
-
 
 @app.route('/', methods=['GET', 'POST'])
 def introLevel():

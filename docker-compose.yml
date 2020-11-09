@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  sarcasm-web:
+    build: .
+    ports:
+      - "7777:7777"
