@@ -2,6 +2,7 @@ from flask import request, render_template, flash, session
 import pickle
 from app import app
 import numpy as np
+import json
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import load_model
 
@@ -19,10 +20,10 @@ def LSTMmodel(sentence):
     value = LSTM.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'LSTM:  <b>' + sentence + '</b> Termasuk kalimat sarkas <br/> '+ statement
+        result = 'LSTM: ' + sentence + ' Termasuk kalimat sarkas  '+ statement
     else:
-        result = 'LSTM:  <b>' + sentence + '</b>  Bukan kalimat sarkas <br/> ' + statement
-    return result
+        result = 'LSTM: ' + sentence + '  Bukan kalimat sarkas  ' + statement
+    return [result, value]
         
 def GRUmodel(sentence):
     word_tokenize = tokenizer.texts_to_sequences([sentence])
@@ -31,10 +32,10 @@ def GRUmodel(sentence):
     value = GRU.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'GRU:  <b>' + sentence + '</b>  Termasuk kalimat sarkas <br/> '+ statement
+        result = 'GRU: ' + sentence + ' Termasuk kalimat sarkas  '+ statement
     else:
-        result = 'GRU:  <b>' + sentence + '</b>  Bukan kalimat sarkas <br/> ' + statement
-    return result
+        result = 'GRU:  ' + sentence + ' Bukan kalimat sarkas  ' + statement
+    return [result, value]
         
 def CNNmodel(sentence):
     word_tokenize = tokenizer.texts_to_sequences([sentence])
@@ -43,10 +44,10 @@ def CNNmodel(sentence):
     value = CNN.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'CNN: <b>' + sentence + '</b> Termasuk kalimat sarkas <br/> ' + statement
+        result = 'CNN: ' + sentence + ' Termasuk kalimat sarkas ' + statement
     else:
-        result = 'CNN: <b>' + sentence + '</b>  Bukan kalimat sarkas <br/> ' + statement
-    return result
+        result = 'CNN: ' + sentence + ' Bukan kalimat sarkas ' + statement
+    return [result, value]
 
 
 
@@ -56,15 +57,22 @@ def home():
     if request.method == 'POST' :
         input_text = request.form.get("input-text")
         model = request.form.get("model")
+        pred_val = []
 
         try:
             if (model == 'CNN'):
-                pred_result = CNNmodel(input_text)
+                pred_result = CNNmodel(input_text)[0]
+                pred_val.append(CNNmodel(input_text)[1])
+                pred_val.append(100 - CNNmodel(input_text)[1])
             elif (model == 'LSTM'):
-                pred_result = LSTMmodel(input_text)
+                pred_result = LSTMmodel(input_text)[0]
+                pred_val.append(LSTMmodel(input_text)[1])
+                pred_val.append(100 - LSTMmodel(input_text)[1])
             elif (model == 'GRU'):
-                pred_result = GRUmodel(input_text)    
-            return render_template('home.html', text=pred_result)
+                pred_result = GRUmodel(input_text)[0] 
+                pred_val.append(GRUmodel(input_text)[1])
+                pred_val.append(100 - GRUmodel(input_text)[1])   
+            return render_template('home.html', text=pred_result, val=json.dumps(pred_val))
         except UnboundLocalError:
              flash(u'Input text tidak boleh kosong')
              return render_template('home.html')
