@@ -51,7 +51,7 @@ def CNNmodel(sentence):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def introLevel():
+def home():
 
     if request.method == 'POST' :
         input_text = request.form.get("input-text")
