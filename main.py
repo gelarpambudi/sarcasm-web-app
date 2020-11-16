@@ -19,9 +19,9 @@ def LSTMmodel(sentence):
     value = LSTM.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'LSTM: ' + sentence + ' Termasuk kalimat sarkas \n '+ statement
+        result = 'LSTM:  <b>' + sentence + '</b> Termasuk kalimat sarkas <br> '+ statement
     else:
-        result = 'LSTM: ' + sentence + '  Bukan kalimat sarkas \n ' + statement
+        result = 'LSTM:  <b>' + sentence + '</b>  Bukan kalimat sarkas <br> ' + statement
     return result
         
 def GRUmodel(sentence):
@@ -31,9 +31,9 @@ def GRUmodel(sentence):
     value = GRU.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'GRU: ' + sentence + '  Termasuk kalimat sarkas \n '+ statement
+        result = 'GRU:  <b>' + sentence + '</b>  Termasuk kalimat sarkas <br> '+ statement
     else:
-        result = 'GRU: ' + sentence + '  Bukan kalimat sarkas \n ' + statement
+        result = 'GRU:  <b>' + sentence + '</b>  Bukan kalimat sarkas <br> ' + statement
     return result
         
 def CNNmodel(sentence):
@@ -43,9 +43,9 @@ def CNNmodel(sentence):
     value = CNN.predict(input)[0][0]*100
     statement = str('Tingkat sarkasme '+"{:.2f}".format(value)+'%')
     if value>50:
-        result = 'CNN: ' + sentence + '  Termasuk kalimat sarkas \n ' + statement
+        result = 'CNN: <b>' + sentence + '</b> Termasuk kalimat sarkas <br> ' + statement
     else:
-        result = 'CNN: ' + sentence + '  Bukan kalimat sarkas \n ' + statement
+        result = 'CNN: <b>' + sentence + '</b>  Bukan kalimat sarkas <br> ' + statement
     return result
 
 
