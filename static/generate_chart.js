@@ -6,7 +6,7 @@ $(document).ready(function(){
         type: "get",
         data: {vals: ''},
         success: function(response) {
-        full_data = JSON.parse($payload);
+        full_data = JSON.parse(payload);
         _data = full_data['data'];
         },
     });
