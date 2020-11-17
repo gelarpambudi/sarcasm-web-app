@@ -1,7 +1,7 @@
 console.log(payload)
 
 var doughnutChart = new Chart(document.getElementById('doughnut-chart').getContext('2d'), {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: ["Sarkasme", "Bukan Sarkasme"],
             datasets: [
