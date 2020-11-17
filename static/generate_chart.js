@@ -12,7 +12,7 @@ var doughnutChart = new Chart(document.getElementById('doughnut-chart').getConte
             ]
         },
         options: {
-            legend: { display: false },
+            legend: { display: true },
             title: {
                 display: true,
                 text: 'Tingkat Sarkasme Kalimat'

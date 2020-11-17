@@ -23,7 +23,7 @@ def LSTMmodel(sentence):
         result = 'LSTM: ' + sentence + ' Termasuk kalimat sarkas  '+ statement
     else:
         result = 'LSTM: ' + sentence + '  Bukan kalimat sarkas  ' + statement
-    return [result, value]
+    return [result, float(format(value, '.2f'))]
         
 def GRUmodel(sentence):
     word_tokenize = tokenizer.texts_to_sequences([sentence])
@@ -35,7 +35,7 @@ def GRUmodel(sentence):
         result = 'GRU: ' + sentence + ' Termasuk kalimat sarkas  '+ statement
     else:
         result = 'GRU:  ' + sentence + ' Bukan kalimat sarkas  ' + statement
-    return [result, value]
+    return [result, float(format(value, '.2f'))]
         
 def CNNmodel(sentence):
     word_tokenize = tokenizer.texts_to_sequences([sentence])
@@ -47,7 +47,7 @@ def CNNmodel(sentence):
         result = 'CNN: ' + sentence + ' Termasuk kalimat sarkas ' + statement
     else:
         result = 'CNN: ' + sentence + ' Bukan kalimat sarkas ' + statement
-    return [result, value]
+    return [result, float(format(value, '.2f'))]
 
 
 
