@@ -6,11 +6,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-
         awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/static/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script type="text/javascript">
-          var payload = {{ val | safe }}
-        </script> 
         <title>Sarcasm Detection</title>
     </head>
 
@@ -30,23 +25,19 @@
         </p>
 
         <form class="example" method="post" action="" style="margin:auto;max-width:600px">
-            <input type="text" placeholder="Input your answer here" name="input-text" value="{{ request.form['input-text'] }}">
+            <input type="text" placeholder="Input your answer here" name="input-text">
             <button type="submit">Submit<i class="fa fa-search"></i></button><br>
             <center>
-                <input type="radio" name="model" id="model1" value="CNN"> CNN </input>
-                <input type="radio" name="model" id="model2" value="LSTM"> LSTM </input>
-                <input type="radio" name="model" id="model3" value="GRU"> GRU </input>
+                <input type="radio" name="is_sarcasm" id="model1" value="yes"> yes </input>
+                <input type="radio" name="is_sarcasm" id="model2" value="no"> no </input>
             </center>
         </form>
 
         <p> <center> {{ text }} </center></p>
 
-        <canvas id="doughnut-chart" width="600" height="250"></canvas>
-        <script src="{{ url_for('static', filename='generate_chart.js') }}"></script>
-
         <move class="example" method="post" action="" style="margin:auto;max-width:600px">
           <center>
-            <button type="submit" onclick="document.location='updatemodel'">Add a Data<i class="fa fa-search"></i></button><br>
+            <button type="submit" onclick="document.location='/'">Main Menu<i class="fa fa-search"></i></button><br>
           </center>
         </move>
 

@@ -49,6 +49,29 @@ def CNNmodel(sentence):
         result = 'CNN: ' + sentence + ' Bukan kalimat sarkas ' + statement
     return [result, float(format(value, '.2f'))]
 
+def updatemodel(sentence, sarcasm):
+    if sarcasm == 'yes':
+        labels = 1
+    else:
+        labels = 0
+    word_tokenize = tokenizer.texts_to_sequences([sentence])
+    inputtext = pad_sequences(word_tokenize, maxlen=20, padding='post', truncating='post')
+    inputtext = np.array(inputtext)
+    LSTM = load_model('LSTM_model.h5')
+    GRU = load_model('GRU_model.h5')
+    CNN = load_model('CNN_model.h5')
+    LSTM.fit(inputtext, np.array([labels]))
+    GRU.fit(inputtext, np.array([labels]))
+    CNN.fit(inputtext, np.array([labels]))
+    GRU.save("GRU_model.h5")
+    LSTM.save('LSTM_model.h5')
+    CNN.save('CNN_model.h5')
+    LSTM = load_model('LSTM_model.h5')
+    GRU = load_model('GRU_model.h5')
+    CNN = load_model('CNN_model.h5')
+    finish = 'finish'
+    return finish
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -79,6 +102,26 @@ def home():
 
     else:
         return render_template('home.html')
+
+@app.route('/updatemodel', methods=['GET', 'POST'])
+def model():
+
+    if request.method == 'POST' :
+        input_text = request.form.get("input-text")
+        is_sarcasm = request.form.get("is_sarcasm")
+        str(input_text)
+        str(is_sarcasm)
+        k=1
+
+        while k<3:
+            updatemodel(input_text,is_sarcasm)
+            k+=1
+        return render_template('updatemodel.html', text='finish')
+        #except UnboundLocalError:
+         #   return render_template('updatemodel.html', text='Input text tidak boleh kosong')
+
+    else:
+        return render_template('updatemodel.html')
 
 
 
