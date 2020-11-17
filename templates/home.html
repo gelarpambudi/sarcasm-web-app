@@ -10,8 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script type="text/javascript">
           var payload = '{{ val | safe }}'
-        </script>
-        <script src="{{ url_for('static', filename='generate_chart.js') }}"></script> 
+        </script> 
         <title>Sarcasm Detection</title>
     </head>
 
@@ -43,6 +42,7 @@
         <p> <center> {{ text }} </center></p>
 
         <canvas id="doughnut-chart" width="800" height="450"></canvas>
+        <script src="{{ url_for('static', filename='generate_chart.js') }}"></script>
 
 
     </body>
