@@ -1,4 +1,5 @@
 console.log(payload)
+Chart.defaults.global.legend.display = true;
 
 var doughnutChart = new Chart(document.getElementById('doughnut-chart').getContext('2d'), {
         type: 'pie',
