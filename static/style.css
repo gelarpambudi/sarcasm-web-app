@@ -89,7 +89,7 @@ table.entry th {
 
 
 move.example button {
-  float: left;
+  float: center;
   width: 10%;
   padding: 10px;
   background: #2196F3;

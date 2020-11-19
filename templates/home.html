@@ -38,17 +38,19 @@
                 <input type="radio" name="model" id="model3" value="GRU"> GRU </input>
             </center>
         </form>
+        
+        <move class="example" method="post" action="" style="margin:auto;max-width:500px">
+          <center>
+            <button type="submit" onclick="document.location='updatemodel'">Add a Data<i class="fa fa-search"></i></button><br>
+          </center>
+        </move>
 
         <p> <center> {{ text }} </center></p>
 
         <canvas id="doughnut-chart" width="600" height="250"></canvas>
         <script src="{{ url_for('static', filename='generate_chart.js') }}"></script>
 
-        <move class="example" method="post" action="" style="margin:auto;max-width:500px">
-          <center>
-            <button type="submit" onclick="document.location='updatemodel'">Add a Data<i class="fa fa-search"></i></button><br>
-          </center>
-        </move>
+        
 
 
     </body>
