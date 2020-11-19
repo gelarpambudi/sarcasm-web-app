@@ -99,6 +99,7 @@ move.example button {
   border-left: none;
   cursor: pointer;
   text-align: center;
+  margin: auto;
 }
 move.example button:hover {
   background: #0b7dda;
