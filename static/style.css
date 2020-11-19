@@ -86,4 +86,29 @@ table.entry th {
 .button1:active {
   background-color: #f5350c ;
 }
+
+
+move.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  text-align: center;
+}
+move.example button:hover {
+  background: #0b7dda;
+}
+move.example button:active {
+  background: #f5350c;
+}
+move.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
   
